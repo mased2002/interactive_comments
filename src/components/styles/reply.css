@@ -1,0 +1,45 @@
+.saying{
+    color: #5357B6;
+    font-weight: 200;
+}
+.btns{
+    display: flex;
+    gap: 20px;
+}
+.edit_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+.delete_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+.delete_icon_say{
+    color: hsl(358, 79%, 66%);
+}
+.edit_icon{
+    fill: #5357B6;
+}
+.delete_icon{
+    fill: hsl(358, 79%, 66%);
+}
+.delete_button:hover{
+    .delete_icon_say{
+        color: hsl(357, 100%, 86%);
+    }
+    .delete_icon{
+        fill: hsl(357, 100%, 86%);
+    }
+}
+.edit_button:hover{
+    .edit_icon_say{
+        color: hsl(238, 40%, 52%);
+    }
+    .edit_icon{
+        fill: hsl(238, 40%, 52%);
+    }
+}

@@ -1,0 +1,159 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.comment_container{
+    background-color: white;
+    display: flex;
+    gap :15px;
+    align-items: center;
+    padding: 30px 25px;
+    border-radius: 10px;
+    width: 70%;
+}
+.math_icons{
+    width: 11px;
+    height: 11px;
+    fill: lightgray;
+}
+.score{
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    gap: 25px;
+    background-color: hsl(228, 33%, 97%);
+    padding: 5px 8px;
+    justify-content: center;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+}
+.score_points{
+    color: rgb(39, 39, 120);
+    font-size:16px;
+    text-align: center;
+}
+
+/* now the real comment */
+.comment{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 90%;
+}
+/* this contains the usrname date and so on */
+.above_comment_section{
+    display: flex;
+    justify-content: space-between;
+}
+.profile{
+    width: 35px;
+}
+.img_date{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.createdAt{
+    color:hsl(225, 3%, 74%);
+}
+.username{
+    font-size: 18px;
+}
+.reply_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.reply_saying{
+    color: #5357B6;
+    font-weight: 200;
+}
+.content{
+    color: hsl(211, 10%, 45%);
+    text-align: start;
+}
+
+/* reply component styles */
+.reply_container{
+    background-color: white;
+    display: flex;
+    gap :15px;
+    align-items: center;
+    padding: 30px 25px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.replies_container{
+ width: 70%;
+ display: flex;
+ justify-content: space-around;
+}
+.reply_comment_container{
+    gap: 15px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    /* justify-content: end; */
+}
+.hr{
+    width: 0.1px;
+    border:  hsla(211, 10%, 45%, 0.548) solid;
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+    justify-self: center;
+}
+/*  if comment is for current user*/
+.saying{
+    color: #5357B6;
+    font-weight: 200;
+}
+.btns{
+    display: flex;
+    gap: 20px;
+}
+.edit_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+.delete_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+.delete_icon_say{
+    color: hsl(358, 79%, 66%);
+}
+.edit_icon{
+    fill: #5357B6;
+}
+.delete_icon{
+    fill: hsl(358, 79%, 66%);
+}
+.delete_button:hover{
+    .delete_icon_say{
+        color: hsl(357, 100%, 86%);
+    }
+    .delete_icon{
+        fill: hsl(357, 100%, 86%);
+    }
+}
+.edit_button:hover{
+    .edit_icon_say{
+        color: hsl(238, 40%, 52%);
+    }
+    .edit_icon{
+        fill: hsl(238, 40%, 52%);
+    }
+}
