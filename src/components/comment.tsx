@@ -5,6 +5,8 @@ import { Reply as ReplyType } from "./types/types"
 import React, { useState } from "react"
 import data from '../data.json'
 
+
+
 interface CommentProps {
   comment: CommentType;
   onDelete: (comment: CommentType) => void;
