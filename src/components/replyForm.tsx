@@ -2,9 +2,9 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import currentProfile from '../../public/images/avatars/image-juliusomo.png'
 import {Comment as commentType} from './types/types';
 import './styles/replyForm.css'
-
+import { Reply as replyType } from './types/types';
 interface ReplyFormProps {
- comment: commentType
+ comment: commentType | replyType;
  onSubmitReply: (replyContent: string) => void;
 }
 

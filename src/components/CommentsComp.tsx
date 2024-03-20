@@ -6,10 +6,10 @@ import Comment from "./comment";
 import currentProfile from '../../public/images/avatars/image-juliusomo.png'
 import DeleteModal from "./deleteModal";
 
-let numberId: number = 5
+export let numberId: number = 5
 
 
-const CommentsComp: React.FC = () => {
+export const CommentsComp: React.FC = () => {
     const [backendComments, setBackendComments] = useState<CommentType[]>([]);
     const [newComment, setNewComment] = useState<string>('')
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -20,6 +20,7 @@ const CommentsComp: React.FC = () => {
     }, [])
 
     // add comment fuction
+     
     const addNewComment = (text: typeof newComment) =>{
         const id = numberId + 1;
         numberId = id;
@@ -108,4 +109,5 @@ const CommentsComp: React.FC = () => {
 function getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-export default CommentsComp;
+ 
+// export default CommentsComp;

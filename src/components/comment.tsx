@@ -4,6 +4,7 @@ import Replies from "./replies"
 import { Reply as ReplyType } from "./types/types"
 import React, { useState } from "react"
 import data from '../data.json'
+import ReplyForm from "./replyForm"
 
 
 
@@ -22,6 +23,8 @@ interface CommentProps {
       onDeleteReply(reply)
     }
     
+    // handle reply method
+
     if(comment.user.username === data.currentUser.username){
       const handleDelete = () => {
         onDelete(comment)
