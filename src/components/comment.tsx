@@ -78,6 +78,9 @@ interface CommentProps {
         </>
       )
     }else{
+    //   const handleNewReply= () => {
+    //     onReply()
+    // }
     return (
       <>
         <div className="comment_container">

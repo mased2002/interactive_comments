@@ -6,9 +6,11 @@ import { Reply as replyType } from './types/types';
 interface ReplyFormProps {
  comment: commentType | replyType;
  onSubmitReply: (replyContent: string) => void;
+ onCancel: () => void;
+//     onConfirm: () => void;
 }
 
-const ReplyForm: React.FC<ReplyFormProps> = ({ comment, onSubmitReply }) => {
+const ReplyForm: React.FC<ReplyFormProps> = ({comment, onSubmitReply, onCancel}) => {
   const [replyContent, setReplyContent] = useState('');
 
   const handleReplySubmit = () => {
@@ -17,17 +19,6 @@ const ReplyForm: React.FC<ReplyFormProps> = ({ comment, onSubmitReply }) => {
     // Clear the replyContent after submission
     setReplyContent('');
   };
-
-//   const handleReplyChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-//     setReplyContent(event.target.value);
-//   };
-
-//   const handleSubmitReply = (event: FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-//     onSubmitReply(replyContent);
-//     setReplyContent('');
-//     setShowReplyForm(false);
-//   };
 
   return (
     <div className="reply-form">
@@ -49,6 +40,7 @@ const ReplyForm: React.FC<ReplyFormProps> = ({ comment, onSubmitReply }) => {
             rows={3}
         />
         <button className='submit_btn' onClick={handleReplySubmit}>Reply</button>
+        <button className='cancel_btn' onClick={onCancel}></button>
     </div>
   );
 };

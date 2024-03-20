@@ -3,27 +3,32 @@ import './styles/comment.css'
 import data from '../data.json'
 import './styles/reply.css'
 import ReplyForm from "./replyForm";
-import { numberId } from "./CommentsComp";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Comment as CommentType } from "./types/types";
 import currentProfile from '../../public/images/avatars/image-juliusomo.png'
 
-function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyType) => void}){
-    const [replyForm, showReplyForm] = useState<boolean>(false)
-    const id = numberId +1
-    const handleAddReply = (replyContent) => {
-        const newReply = {
-            id,
-            content: replyContent,
-            createdAt: "just now",
-            score: 5,
-            user:{
-                image: {
-                    png: data.currentUser.image.png,
-                    webpg: data.currentUser.image.webp
-                },
-                username: data.currentUser.username
-            }
-        } 
+function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyType) => void;}){
+    // const [showReplyForm, setShowReplyForm] = useState<boolean>(false)
+    // const [backendComments, setBackendComments] = useState<CommentType[]>([])
+    // const handleAddReply = (replyContent : string, comment: ReplyType | CommentType) => {
+    //     let replyingto : string;
+    //     const newReply = {
+    //         id: 56,
+    //         content: replyContent,
+    //         createdAt: "just now",
+    //         score: 5,
+    //         user:{
+    //             image: {
+    //                 png: data.currentUser.image.png,
+    //                 webpg: data.currentUser.image.webp
+    //             },
+    //             username: data.currentUser.username
+    //         }
+    //     }
+
+    // }
+    const handleAddReply = (replyContent: string, reply: ReplyType) => {
+        
     }
     if(reply.user.username === data.currentUser.username){
         const handleDelete = () => {
@@ -81,7 +86,7 @@ function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyT
                             <p className="username">{reply.user.username}</p>
                             <p className="createdAt"> {reply.createdAt}</p>
                         </div>
-                        <div className="reply_button" onClick={handleAddReply}>
+                        <div className="reply_button" >
                         <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6"/></svg>
                         <p className="reply_saying">Reply</p>
                         </div>
@@ -93,6 +98,10 @@ function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyT
                     </p>
                     </div>
                 </div>
+                {/* get reply form this is the right way */}
+                {/* {showReplyForm && (
+                    <ReplyForm />
+                )}  */}
             </div>
         </>
     )
