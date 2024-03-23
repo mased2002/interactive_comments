@@ -49,13 +49,14 @@ interface CommentProps {
 
     const [showForm, setShowForm] = useState<Boolean>(false)
     const [replyToReply, setReplyToReply] = useState<ReplyType | null>(null)
+    const [newReply, setNewReply] = useState<ReplyType>()
 
 
     const handleReply = (reply: ReplyType) => {
       setShowForm(true)
       setReplyToReply(reply)
+      console.log(reply)
     }
-    
 
     const handleAddReply = (replyContent: string, reply: ReplyType) =>{
               setReplyToReply(reply)
@@ -131,12 +132,6 @@ interface CommentProps {
                 {comment.replies.map((reply : ReplyType) => (
                   <Replies key={reply.id} reply={reply} onDelete={handleDeleteReply} onReplyReply={handleReply}/>
                 ))}
-                {showForm && (
-                  <Form key={replyToReply?.id} reply={replyToReply!} onCancel={handleCancelReply} onReply={handleAddReply}/>
-                )}
-                <div className="textarea">
-                  <img src="" alt="" />
-                </div>
                 </div>
             </div>
           )}
@@ -178,6 +173,12 @@ interface CommentProps {
               {comment.replies.map((reply : ReplyType) => (
                 <Replies key={reply.id} reply={reply} onDelete={handleDeleteReply}onReplyReply={handleReply}/>
               ))}
+                {showForm && (
+                  <>
+                    {console.log("showform is true")}
+                    <Form key={replyToReply?.id} reply={replyToReply!} onCancel={handleCancelReply} onReply={handleAddReply}/>
+                  </> 
+                )}
               </div>
           </div>
         )}

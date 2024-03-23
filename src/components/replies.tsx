@@ -11,10 +11,9 @@ import { Form } from "./Form";
 // onReplyReply: (reply: ReplyType)=> void;
 
 function Replies ({reply, onDelete, onReplyReply}: {reply: ReplyType; onDelete: (reply: ReplyType) => void; onReplyReply: (reply: ReplyType)=> void;}){
-    const handleReply= () => {
-        onReplyReply(reply);
-        console.log(reply)
-    }
+    // const handleReply= () => {
+    //     onReplyReply(reply);
+    // }
     // const[showForm, setShowForm] = useState<Boolean>(false)
     // const[replyToReply, setReplyToReply] = useState<ReplyType | null>(null)
 
@@ -57,9 +56,7 @@ function Replies ({reply, onDelete, onReplyReply}: {reply: ReplyType; onDelete: 
         //     setShowForm(false)
         //     // setReplyToReply(null)
         // }
-        // const handleReply = () => {
-        //     onReplyReply(reply)
-        // }
+        
     if(reply.user.username === data.currentUser.username){
         const handleDelete = () => {
             onDelete(reply)
@@ -101,6 +98,9 @@ function Replies ({reply, onDelete, onReplyReply}: {reply: ReplyType; onDelete: 
             </>
         )
     }else{ 
+        // const handleReply = () => {
+        //     onReplyReply(reply)
+        // }
     return(
         <>
             <div className="reply_container">
@@ -116,7 +116,7 @@ function Replies ({reply, onDelete, onReplyReply}: {reply: ReplyType; onDelete: 
                             <p className="username">{reply.user.username}</p>
                             <p className="createdAt"> {reply.createdAt}</p>
                         </div>
-                        <div className="reply_button" onClick={handleReply}>
+                        <div className="reply_button" onClick={() => onReplyReply(reply)}>
                         <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6"/></svg>
                         <p className="reply_saying">Reply</p>
                         </div>

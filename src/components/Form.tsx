@@ -6,7 +6,7 @@ interface formProps{
     onCancel: () => void;
     onReply: (replyContent: string, reply: replyType) => void;
 }
-export interface currentUserProps{
+ export interface currentUserProps{
     image: {
         png: string,
         webp: string
@@ -15,8 +15,7 @@ export interface currentUserProps{
 }
 
 
-
-export const Form: React.FC<formProps>=({reply, onCancel, onReply})=>{
+ export const Form: React.FC<formProps>=({reply, onCancel, onReply})=>{
     const [replyContent, setReplyContent] = useState('');
     const [currentUser, setCurrentUser] = useState<currentUserProps>()
     const currentUserDataString = localStorage.getItem('currentUser');
@@ -45,5 +44,6 @@ const handleReplySubmit = () => {
         </div>
     )
 }
+
 
 // export default Form;
