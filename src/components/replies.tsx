@@ -2,8 +2,64 @@ import { Reply as ReplyType } from "./types/types";
 import './styles/comment.css'
 import data from '../data.json'
 import './styles/reply.css'
+import { useEffect, useState } from "react";
+import { numberId } from "./CommentsComp";
+import { currentUserProps } from "./Form";
+import { Form } from "./Form";
 
-function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyType) => void}){
+// this is the next argument
+// onReplyReply: (reply: ReplyType)=> void;
+
+function Replies ({reply, onDelete, onReplyReply}: {reply: ReplyType; onDelete: (reply: ReplyType) => void; onReplyReply: (reply: ReplyType)=> void;}){
+    const handleReply= () => {
+        onReplyReply(reply);
+        console.log(reply)
+    }
+    // const[showForm, setShowForm] = useState<Boolean>(false)
+    // const[replyToReply, setReplyToReply] = useState<ReplyType | null>(null)
+
+    // const[currentUser, setCurrentUser] = useState<currentUserProps>()
+    // useEffect(() => {
+    //     const currentUserDataString = localStorage.getItem('currentUser');
+
+    //     if (currentUserDataString !== null) {
+    //     const currentuserData = JSON.parse(currentUserDataString);
+    //     // Now you can safely use currentuserData
+    //     setCurrentUser(currentuserData);
+    //     }
+    // }, [])
+
+    //     const handleAddReply = (replyContent: string, reply: ReplyType) =>{
+    //         setReplyToReply(reply)
+    //         const id = numberId +1
+    //         const newReply = {
+    //             id,
+    //             content: replyContent,
+    //             createdAt:"just now",
+    //             score: 42,
+    //             replyingTo: "@" + replyToReply?.user.username,
+    //             user: {
+    //                 image: {
+    //                     png: currentUser?.image.png,
+    //                     webp: currentUser?.image.webp
+    //                 },
+    //                 username: currentUser?.username
+    //             }
+    //         };
+    //         console.log(newReply)
+    //     }
+
+
+        // add the reply
+
+        // when reply is cancelled
+        // const handleCancelReply = () => {
+        //     setShowForm(false)
+        //     // setReplyToReply(null)
+        // }
+        // const handleReply = () => {
+        //     onReplyReply(reply)
+        // }
     if(reply.user.username === data.currentUser.username){
         const handleDelete = () => {
             onDelete(reply)
@@ -44,7 +100,7 @@ function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyT
             </div>
             </>
         )
-    }else{
+    }else{ 
     return(
         <>
             <div className="reply_container">
@@ -60,7 +116,7 @@ function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyT
                             <p className="username">{reply.user.username}</p>
                             <p className="createdAt"> {reply.createdAt}</p>
                         </div>
-                        <div className="reply_button">
+                        <div className="reply_button" onClick={handleReply}>
                         <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6"/></svg>
                         <p className="reply_saying">Reply</p>
                         </div>
@@ -73,8 +129,12 @@ function Replies ({reply, onDelete}: {reply: ReplyType; onDelete: (reply: ReplyT
                     </div>
                 </div>
             </div>
+            {/* if the show form is on
+            {showForm && (
+            <Form reply={reply} onCancel={handleCancelReply} onReply={handleAddReply}/>
+            )} */}
         </>
     )
-    }
+}
 }
 export default Replies;

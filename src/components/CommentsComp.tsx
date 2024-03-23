@@ -3,20 +3,27 @@ import { Comment as CommentType, Reply as ReplyType } from "./types/types";
 import data from '../data.json'
 import './styles/CommentsComp.css'
 import Comment from "./comment";
-import currentProfile from '../../public/images/avatars/image-juliusomo.png'
+import currentProfile from '../..//public/images/avatars/image-juliusomo.png'
 import DeleteModal from "./deleteModal";
 
-let numberId: number = 5
+export let numberId: number = 5
 
-
-const CommentsComp: React.FC = () => {
+const comments = JSON.stringify(data.comments)
+const currentUser = JSON.stringify(data.currentUser)
+localStorage.setItem('comments', comments)
+localStorage.setItem('currentUser', currentUser)
+export const CommentsComp: React.FC = () => {
     const [backendComments, setBackendComments] = useState<CommentType[]>([]);
     const [newComment, setNewComment] = useState<string>('')
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
     const [commentToDelete, setCommentToDelete] = useState<CommentType | null>(null);
     useEffect(() => {
-        setBackendComments(data.comments)
-        console.log(backendComments)
+        const storedCommentsString = localStorage.getItem('comments');
+  if (storedCommentsString) {
+    const storedComments = JSON.parse(storedCommentsString);
+    setBackendComments(storedComments);
+    console.log(backendComments); // This might still log the previous state due to closure, see note below
+  }
     }, [])
 
     // add comment fuction
@@ -32,7 +39,11 @@ const CommentsComp: React.FC = () => {
             replies: []
         }
         // Update backendComments with the new comment object
-        setBackendComments([...backendComments, newCommentObject]);
+        const updatedComments = [...backendComments, newCommentObject]
+        setBackendComments(updatedComments);
+
+        localStorage.setItem('comments', JSON.stringify(updatedComments))
+
 
         //clear the newComment textarea after adding the comment
         setNewComment('');
@@ -108,4 +119,4 @@ const CommentsComp: React.FC = () => {
 function getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-export default CommentsComp;
+// export default CommentsComp;

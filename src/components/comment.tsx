@@ -1,9 +1,28 @@
-import { Comment as CommentType } from "./types/types"
+import { Comment as CommentType, Reply } from "./types/types"
 import './styles/comment.css'
 import Replies from "./replies"
 import { Reply as ReplyType } from "./types/types"
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import data from '../data.json'
+import { Form } from "./Form"
+const currentUserDataString = localStorage.getItem('currentUser');
+
+if (currentUserDataString !== null) {
+  const currentuserData = JSON.parse(currentUserDataString);
+  // Now you can safely use currentuserData
+}
+
+// reply to reply
+
+
+interface currentUserProps{
+  image: {
+    png: string,
+    webp: string
+  },
+  username: string
+}
+
 
 interface CommentProps {
   comment: CommentType;
@@ -16,10 +35,55 @@ interface CommentProps {
     //     const replies = comment.replies + comment.user.username
     //     console.log(replies)
     //  }
+
+    const[currentUser, setCurrentUser] = useState<currentUserProps>()
+    useEffect(() => {
+        const currentUserDataString = localStorage.getItem('currentUser');
+
+        if (currentUserDataString !== null) {
+        const currentuserData = JSON.parse(currentUserDataString);
+        // Now you can safely use currentuserData
+        setCurrentUser(currentuserData);
+        }
+    }, [])
+
+    const [showForm, setShowForm] = useState<Boolean>(false)
+    const [replyToReply, setReplyToReply] = useState<ReplyType | null>(null)
+
+
+    const handleReply = (reply: ReplyType) => {
+      setShowForm(true)
+      setReplyToReply(reply)
+    }
+    
+
+    const handleAddReply = (replyContent: string, reply: ReplyType) =>{
+              setReplyToReply(reply)
+              const id = 234 +1
+              const newReply = {
+                  id,
+                  content: replyContent,
+                  createdAt:"just now",
+                  score: 42,
+                  replyingTo: "@" + replyToReply?.user.username,
+                  user: {
+                      image: {
+                          png: currentUser?.image.png,
+                          webp: currentUser?.image.webp
+                      },
+                      username: currentUser?.username
+                  }
+              };
+              console.log(newReply)
+          }
+      
+    const handleCancelReply =() => {
+      setShowForm(false)
+      setReplyToReply(null)
+    }
     const handleDeleteReply = (reply: ReplyType) => {
       onDeleteReply(reply)
     }
-    
     if(comment.user.username === data.currentUser.username){
       const handleDelete = () => {
         onDelete(comment)
@@ -65,8 +129,14 @@ interface CommentProps {
               </div>
               <div className="reply_comment_container">
                 {comment.replies.map((reply : ReplyType) => (
-                  <Replies key={reply.id} reply={reply} onDelete={handleDeleteReply}/>
+                  <Replies key={reply.id} reply={reply} onDelete={handleDeleteReply} onReplyReply={handleReply}/>
                 ))}
+                {showForm && (
+                  <Form key={replyToReply?.id} reply={replyToReply!} onCancel={handleCancelReply} onReply={handleAddReply}/>
+                )}
+                <div className="textarea">
+                  <img src="" alt="" />
+                </div>
                 </div>
             </div>
           )}
@@ -106,7 +176,7 @@ interface CommentProps {
             </div>
             <div className="reply_comment_container">
               {comment.replies.map((reply : ReplyType) => (
-                <Replies key={reply.id} reply={reply} onDelete={handleDeleteReply}/>
+                <Replies key={reply.id} reply={reply} onDelete={handleDeleteReply}onReplyReply={handleReply}/>
               ))}
               </div>
           </div>

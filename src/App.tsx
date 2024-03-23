@@ -3,7 +3,7 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Comments from './components/comments'
-import CommentsComp from './components/CommentsComp'
+import { CommentsComp }from './components/CommentsComp'
 
 function App() {
   return (
